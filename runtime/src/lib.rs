@@ -55,6 +55,12 @@ use version::RuntimeVersion;
 use version::NativeVersion;
 use consensus_aura::api as aura_api;
 
+// added these 2
+mod runtime_example;
+impl runtime_example::Trait for Runtime {
+	type Event = Event;
+}
+
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
 pub use runtime_primitives::BuildStorage;
@@ -253,6 +259,7 @@ construct_runtime!(
 		CouncilMotions: council_motions::{Module, Call, Storage, Event<T>, Origin},
 		Council: council::{Module, Call, Storage, Event<T>},
 		Democracy: democracy,
+		RuntimeExample: runtime_example::{Module, Call, Storage, Event<T>},
 	}
 );
 
